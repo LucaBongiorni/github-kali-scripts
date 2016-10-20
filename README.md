@@ -4,11 +4,11 @@ Random scripts for use in the Kali Linux Distro.  Feel free to modify the script
 
 Clone the repo
 
-cd kali-scripts
+<pre>cd kali-scripts
 
 cd scripts
 
-chmod 755 ./*/*.sh
+chmod 755 ./*/*.sh</pre>
 
 ./mac-spoofing/spoof.sh
 Uses macchanger to spoof eth's and wlan's MAC address to a random address
