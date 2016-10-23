@@ -1,16 +1,16 @@
 # kali-scripts
-
+<pre>
 Random scripts for use in the Kali Linux Distro.  Feel free to modify the scripts for your particular application.  I will try to use variables where I can to make it simple to configure the scripts.  These are not 100% the best way to do something but just what works primarily for my personal use.  I mainly make these for reference when I find I have to use an odd work around.  For example now with macchanger after spoofing your MAC address you have to add your gateway back in.
 
 Clone the repo
 
-<pre>cd kali-scripts
+cd kali-scripts
 
 cd scripts
 
 chmod 755 ./*.sh
 
-chmod 755 ./*/*.sh</pre>
+chmod 755 ./*/*.sh
 
 python pinbrute.py -c '0123456789' -m 6
 python pinbrute.py -c '0123456789' -m 6 > pins.txt
@@ -33,3 +33,4 @@ Runs "service network-manager restart" after you have set monitor mode so you ca
 
 ./wifi-monitor-mode/restore.sh
 After running your WiFi interface in monitor mode with aircrack-ng this script will restore your network adapters.
+</pre>
