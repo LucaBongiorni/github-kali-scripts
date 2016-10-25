@@ -19,6 +19,9 @@ Tool for calculating sequences to brute force pin based passwords of a fixed len
 python debruijn.py -c '0123456789' -m 3
 Calculate de Bruijn sequence for a specific character set and subsequence.  Specify the character set with -c 'characters' and the max length of the subsequence with -m # as in above example.
 
+./printerspam.sh
+Causes a networked printer with port 9100 open to print your message line by line.
+
 ./volume.sh
 Set speaker volume through script.
 
