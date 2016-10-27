@@ -7,3 +7,4 @@ defaultvolume=0
 
 read -e -i $defaultvolume -p 'Please Enter Volume 0-100: ' volume
 amixer sset Master $volume'%'
+xset b off
