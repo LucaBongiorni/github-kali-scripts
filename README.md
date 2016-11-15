@@ -12,9 +12,9 @@ chmod 755 ./*.sh
 
 chmod 755 ./*/*.sh
 
-python pinbrute.py -c '0123456789' -m 6
-python pinbrute.py -c '0123456789' -m 6 > pins.txt
-Tool for calculating sequences to brute force pin based passwords of a fixed length.  For example a door requires setting a 6 digit pin with available character set of 0-9.  You would set the character set with -c '0123456789' and the length with -m 6.
+python pinbrute.py -c '0123456789' -l 6
+python pinbrute.py -c '0123456789' -l 6 > pins.txt
+Tool for calculating sequences to brute force pin based passwords of a fixed length.  For example a door requires setting a 6 digit pin with available character set of 0-9.  You would set the character set with -c '0123456789' and the length with -l 6.
 
 python debruijn.py -c '0123456789' -m 3
 Calculate de Bruijn sequence for a specific character set and subsequence.  Specify the character set with -c 'characters' and the max length of the subsequence with -m # as in above example.
