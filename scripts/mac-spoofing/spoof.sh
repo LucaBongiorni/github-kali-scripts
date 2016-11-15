@@ -1,5 +1,5 @@
 #!/bin/bash
-#add your default gateway that you normally use so you don't have to manually type it everytime you want to spoof your MAC address
+#add your default gateway that you normally use so you don't have to manually type it everytime you want to spoof your MAC address as there is a bug that requires it to be manually set after spoofing
 
 defaultgateway='192.168.1.1'
 ethernet=eth0

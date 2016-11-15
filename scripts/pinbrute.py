@@ -5,9 +5,11 @@ from rflib import *
 from struct import *
 import argparse
 
-parser = argparse.ArgumentParser(description='Calculate all permutations of a specified character set and specified length. Usage: python pinbrute.py -c \'0123456789\' -m 3',version="0")
+parser = argparse.ArgumentParser(description='Calculate all permutations of a specified character set and specified length. Usage: python pinbrute.py -c \'0123456789\' -l 3',version="0")
 parser.add_argument('-c', action="store", dest="characters",default='0123456789',help='Character set: 01, 0123456789, +*#, ABCDEFG',type=str)
-parser.add_argument('-m', action="store", dest="maxlength",default=3,help='Fixed Length of Pincode/Password',type=int)
+parser.add_argument('-l', action="store", dest="fixedlength",default=3,help='Fixed Length of Pincode/Password',type=int)
+parser.add_argument('-p', action="store", dest="prepend",default='',help='Prepend static characters before pin',type=str)
+parser.add_argument('-t', action="store", dest="append",default='',help='Append static characters after pin',type=str)
 args = parser.parse_args()
 
 ##### de Bruijn Sequence borrowed from Peter Otten - http://code.activestate.com/lists/python-list/660415/ #####
@@ -32,13 +34,13 @@ def debruijn_bytes(k, n):
     return sequence.translate(_mapping).decode("ascii")
 ##### end of borrowed code #####
 
-seq = debruijn_bytes(len(args.characters), args.maxlength)
-tail = seq[:args.maxlength-1]
+seq = debruijn_bytes(len(args.characters), args.fixedlength)
+tail = seq[:args.fixedlength-1]
 debruijn = (seq+tail)
 
 startn = 0
-endy = args.maxlength
-while(startn < len(debruijn)-(args.maxlength-1)):
-   print(debruijn[startn:endy])
+endy = args.fixedlength
+while(startn < len(debruijn)-(args.fixedlength-1)):
+   print(args.prepend+debruijn[startn:endy]+args.append)
    startn = startn + 1
    endy = endy + 1

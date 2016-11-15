@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #user config below
-monitor=wlan1mon
+monitor=wlan0mon
 network=wlan0
 
 ifconfig $monitor down
