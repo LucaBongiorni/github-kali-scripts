@@ -78,3 +78,8 @@ apt-get clean
 #clear old logs that have been rotated or archived
 find /var/log -type f -regex ".*\.gz$" -delete
 find /var/log -type f -regex ".*\.[0-9]$" -delete
+
+
+#SSH Connection Failing (Host key verification failed.)
+#Warning: ensure there isn't a mitm attack or some sort of security related event happening
+ssh-keyscan -t rsa -H 192.168.1.101 >> ~/.ssh/known_hosts
