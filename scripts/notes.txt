@@ -109,3 +109,13 @@ hashcat -m 2500 -r /usr/share/hashcat/rules/d3ad0ne.rule capture.hccap /usr/shar
 hashcat -m 2500 -r /usr/share/hashcat/rules/dive.rule capture.hccap /usr/share/wordlists/rockyou.txt
 #view cracked hashes in pot file
 cat /root/.hashcat/hashcat.pot
+
+#Install oclvanitygen. for guide see: https://legacysecuritygroup.com/index.php/projects/categories/12-software/35-oclvanitygen-compiling-and-use
+apt-get install opencl-headers libssl-dev libpcre3-dev ocl-icd-dev ocl-icd-dbg
+#run "locate libOpenCL.so" it will likely have .1 appended to it, create a system link to it without .1 or expect compile errors
+ln -s /usr/lib/x86_64-linux-gnu/libOpenCL.so.1 /usr/lib/x86_64-linux-gnu/libOpenCL.so
+git clone https://github.com/samr7/vanitygen.git
+cd vanitygen
+make oclvanitygen
+#for GPU0 case insensitive(-i) and address prefix 1337Hax to file Address.txt
+./oclvanitygen -D 0:0 -o Address.txt -i 1337Hax
